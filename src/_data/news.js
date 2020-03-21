@@ -1,5 +1,6 @@
 const axios = require("axios");
 const countries = require("./countries.json");
+
 require('dotenv').config();
 
 async function getNews(country) {
@@ -19,7 +20,6 @@ module.exports = async function() {
 
     var newsPromises = countries.map(getNews);
     return Promise.all(newsPromises).then( newsObjects => {
-      console.log('newsObjects:', newsObjects);
       return [].concat.apply([],newsObjects);
     });
 
